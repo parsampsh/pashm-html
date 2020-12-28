@@ -105,3 +105,18 @@ $output = pashm_html.run('<code as string>')
 
 The `run_file` function gets file path and runs that and returns the output.
 `run` function gets code as string and runs that and returns the output.
+
+## Using `{` and `}` characters inside code
+The `{` and `}` chars are special chars that this system do not prints them like normal characters. If you want to use them as a normal character, you should put a `\` before them.
+
+For example:
+
+```html
+<div>{ println('the \{\}') }</div>
+```
+
+output:
+
+```html
+<div>the {}</div>
+```
