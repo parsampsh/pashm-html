@@ -1,0 +1,9 @@
+#!/usr/bin/env pashmak
+
+import $__dir__ + '/../pashmhtml_core.pashm'
+
+$output = pashm_html.run_file($__dir__ + '/test.html')
+
+assert($output == '<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <meta http-equiv="X-UA-Compatible" content="ie=edge">\n    <title>Document</title>\n</head>\n<body>\n    hello parsa\n    something: hi\n    hello world\n    hello {}\n    the {}\n</body>\n</html>')
+
+println('\033[32mTest was passed.\033[0m')

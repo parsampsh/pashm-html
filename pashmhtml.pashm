@@ -1,0 +1,9 @@
+#!/usr/bin/env pashmak
+import $__dir__ + '/pashmhtml_core.pashm'
+
+if len($argv) > 1
+	print(pashm_html.run_file($argv[1]))
+else
+	println('pashmhtml: File name is required')
+	exit(1)
+endif
