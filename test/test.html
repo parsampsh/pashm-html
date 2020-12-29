@@ -19,5 +19,17 @@
     {{ hello() }}
     {= 'hello \{\}' }
     { print('the \{\}') }
+
+    { if False }
+    <div>Hello!</div>  
+    { endif }
+
+    { if 10 > 5 }
+    <div>test!</div>  
+    { endif }
+
+    { $i = 0; section loop1 }
+    <h6>{{ $i }}</h6>
+    { $i = $i + 1; mem $i < 10; gotoif loop1 }
 </body>
 </html>

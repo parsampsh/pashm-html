@@ -120,3 +120,48 @@ output:
 ```html
 <div>the {}</div>
 ```
+
+## Using If and loop statements
+You can use `if` and `loop` in this system.
+
+for example:
+
+```html
+{ if $age > 18 }
+<div class="alert alert-success">
+    Welcome!
+</div>
+{ else }
+<div class="alert alert-danger">
+    You cannot access to this Site! :))
+</div>
+{ endif }
+```
+
+loops:
+
+```html
+{
+    $i = 0
+    section loop1
+}<div>hello {{ $i }}</div>
+{
+    $i = $i + 1
+    mem $i < 10; gotoif loop1
+}
+```
+
+output:
+
+```html
+<div>hello 0</div>
+<div>hello 1</div>
+<div>hello 2</div>
+<div>hello 3</div>
+<div>hello 4</div>
+<div>hello 5</div>
+<div>hello 6</div>
+<div>hello 7</div>
+<div>hello 8</div>
+<div>hello 9</div>
+```
