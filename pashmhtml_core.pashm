@@ -1,13 +1,33 @@
 namespace pashm_html
-	func run_file($path)
+	func run_file($args)
+		$realtime_run = False
+		if typeof($args) == tuple
+			$path = $args[0]
+			if len($args) > 1
+				$realtime_run = $args[1]
+			endif
+		else
+			$path = $args
+		endif
+
 		$f = fopen($path, 'r')
 		$content = $f->read()
 		$f->close()
-		free $f $path
-		return pashm_html.run($content)
+		free $f $path $args
+		return pashm_html.run($content, $realtime_run)
 	endfunc
 
-	func run($content)
+	func run($args)
+		$realtime_run = False
+		if typeof($args) == tuple
+			$content = $args[0]
+			if len($args) > 1
+				$realtime_run = $args[1]
+			endif
+		else
+			$content = $args
+		endif
+
 		$randstr_1 = '<<<therandomstringforpashmhtml' + str(time.time()) + str(random.random()) + '>>>'
 		$randstr_2 = '<<<therandomstringforpashmhtml' + str(time.time()) + str(random.random()) + '>>>'
 		$content = $content->replace('\{', $randstr_1)
@@ -46,10 +66,16 @@ namespace pashm_html
 			endif
 			$pashm_html_i = $pashm_html_i + 1
 		mem $pashm_html_i < len($pashm_html_parts); gotoif pashm_html_loop2
-		out_start()
+
 		free $pashm_html_i $pashm_html_parts
-		eval($pashm_html_code)
-		out_end()
-		return out_get_clean()
+
+		if $realtime_run
+			eval($pashm_html_code)
+		else
+			out_start()
+			eval($pashm_html_code)
+			out_end()
+			return out_get_clean()
+		endif
 	endfunc
 endns

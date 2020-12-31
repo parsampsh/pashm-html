@@ -106,6 +106,17 @@ $output = pashm_html.run('<code as string>')
 The `run_file` function gets file path and runs that and returns the output.
 `run` function gets code as string and runs that and returns the output.
 
+Also you can pass a **Second Argument** to them. This argument should be a boolean. if this is `True`, this engine runs code directly and shows the output. but if this is `False`(default is false), pashm-html runs the code and returns output as string.
+
+for example:
+
+```bash
+import 'pashmhtml_core.pashm'
+
+$output = pashm_html.run_file('/path/to/file.html', True)
+$output = pashm_html.run('<code as string>', True)
+```
+
 ## Using `{` and `}` characters inside code
 The `{` and `}` chars are special chars that this system do not prints them like normal characters. If you want to use them as a normal character, you should put a `\` before them.
 
