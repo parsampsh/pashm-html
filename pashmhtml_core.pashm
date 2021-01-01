@@ -1,4 +1,6 @@
 namespace pashm_html
+	$version = '0.1'
+
 	func include($args)
 		if typeof($args) != tuple
 			$args = $args,
