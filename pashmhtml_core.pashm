@@ -2,9 +2,7 @@ namespace pashm_html
 	$version = '0.1'
 
 	func include($args)
-		if typeof($args) != tuple
-			$args = $args,
-		endif
+		$args = format_args($args)
 
 		$path = $args[0]
 		$htmldata = {}
@@ -13,42 +11,42 @@ namespace pashm_html
 			$htmldata = $args[1]
 		endif
 
-		pashm_html.run_file($path, True)
+		pashm_html.run_file($path, True, $htmldata)
 	endfunc
 
 	func run_file($args)
+		$args = format_args($args)
 		$realtime_run = False
-		if typeof($args) == tuple
-			$path = $args[0]
-			if len($args) > 1
-				$realtime_run = $args[1]
-			endif
-		else
-			$path = $args
+		$htmldata = {}
+		$path = $args[0]
+		if len($args) > 1
+			$realtime_run = $args[1]
+		endif
+		if len($args) > 2
+			$htmldata = $args[2]
 		endif
 
 		$f = fopen($path, 'r')
 		$content = $f->read()
 		$f->close()
-		free $f $args
-		return pashm_html.run($content, $realtime_run, $path)
+		return pashm_html.run($content, $realtime_run, $path, $htmldata)
 	endfunc
 
 	func run($args)
+		$args = format_args($args)
 		$realtime_run = False
 		$__htmldir__ = $__dir__
 		$__htmlfile__ = $__htmldir__ + '/-'
-		if typeof($args) == tuple
-			$content = $args[0]
-			if len($args) > 1
-				$realtime_run = $args[1]
-			endif
-			if len($args) > 2
-				$__htmlfile__ = os.path.abspath($args[2])
-				$__htmldir__ = os.path.dirname($__htmlfile__)
-			endif
-		else
-			$content = $args
+		$content = $args[0]
+		if len($args) > 1
+			$realtime_run = $args[1]
+		endif
+		if len($args) > 2
+			$__htmlfile__ = os.path.abspath($args[2])
+			$__htmldir__ = os.path.dirname($__htmlfile__)
+		endif
+		if len($args) > 3
+			$htmldata = $args[3]
 		endif
 
 		$randstr_1 = '<<<therandomstringforpashmhtml' + str(time.time()) + str(random.random()) + '>>>'
