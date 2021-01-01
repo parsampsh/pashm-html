@@ -45,6 +45,8 @@ assert($output == '<html lang="en">\n\
     \n\
     <h6>9</h6>\n\
     \n\
+    <h1>included {}</h1>\n\
+    <h1>included {\'foo\': \'bar\'}</h1>\n\
 </body>\n\
 </html>')
 

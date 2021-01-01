@@ -176,3 +176,44 @@ output:
 <div>hello 8</div>
 <div>hello 9</div>
 ```
+
+## `$__htmldir__` and `$__htmlfile__` variables
+
+The `$__htmlfile__` variable contains the current file path.
+The `$__htmldir__` contains the current file parent directory path.
+
+## include other files
+
+You can include other html files in your file.
+
+for example, we have `foo.html` and `bar.html`:
+
+##### `foo.html`:
+
+```html
+<h1>Hello world</h1>
+
+{
+    pashm_html.include($__htmldir__ + '/bar.html') # include the bar.html
+}
+
+<h3>Good bye</h3>
+```
+
+##### `bar.html`:
+
+```html
+<div>I am bar</div>
+```
+
+when we run `foo.html`, output is this:
+
+```html
+<h1>Hello world</h1>
+
+<div>I am bar</div>
+
+<h3>Good bye</h3>
+```
+
+You can include other html files using `pashm_html.include` function and pass file path to that.
