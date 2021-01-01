@@ -217,3 +217,11 @@ when we run `foo.html`, output is this:
 ```
 
 You can include other html files using `pashm_html.include` function and pass file path to that.
+
+Also you can send the data while including a file. for example:
+
+```html
+{ pashm_html.include('other.html', \{'key1': 'value1', 'key2': 'value2'\}) }
+```
+
+Then that data is accessible in `other.html` with `$htmldata` variable.
